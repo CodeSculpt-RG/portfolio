@@ -1,0 +1,43 @@
+G Rahul
+Full-Stack Developer | AI Engineer | Web Developer
+Bhilai / Chhattisgarh, India
+Email: work.grahul@gmail.com
+Phone: +91 9685070128
+GitHub: https://github.com/CodeSculpt-RG
+LinkedIn: https://www.linkedin.com/in/geekster-rahulg
+
+SUMMARY
+Full-Stack Developer skilled in React.js, Node.js, Python, AI, GenAI, LLM, and RAG. Experienced in building scalable web applications, REST APIs, automation workflows, and responsive user interfaces.
+
+EXPERIENCE
+Application Developer - Creator Navigator
+Apr 2026 - Present
+- Built scalable web applications using modern JavaScript frameworks.
+- Integrated GenAI and LLM-based features.
+- Developed REST APIs and optimized backend logic.
+- Worked in agile teams for debugging, deployment, and feature delivery.
+
+Web Developer Intern - Karmanya IT Solution
+Jan 2024 - Dec 2024
+- Developed a school management system for 500+ users.
+- Automated workflows using Python and JavaScript.
+- Improved UI responsiveness across devices.
+- Helped with integration and scalability.
+
+SELECTED PROJECTS
+- LayerStory: https://layerstory.com/
+- Space Station Coworking: https://spacestationcoworking.com/
+- GenAI Assistant with RAG
+- Movie Search App
+- Wikipedia Search App
+- Custom ETL Trade Analysis
+- Learning Path Generator Chatbot
+
+SKILLS
+Languages: Python, JavaScript, TypeScript, HTML, CSS
+Frontend: React.js, Next.js, React Native, Tailwind CSS, Bootstrap
+Backend: Node.js, Express.js, Django, Flask, FastAPI
+Databases: MySQL, MongoDB
+AI: GenAI, LLM, RAG, Prompt Engineering
+Tools: Git, GitHub, Vercel, Firebase, WordPress
+Concepts: REST APIs, Scalable Systems, CI/CD, Agile
