@@ -8,9 +8,9 @@ export function AnimatedText({ text, className }: { text: string; className?: st
         <span key={`${word}-${index}`} className="inline-block overflow-hidden pr-3 align-bottom">
           <motion.span
             className="inline-block"
-            initial={{ y: "110%" }}
+            initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.95, delay: 0.12 + index * 0.07, ease }}
+            transition={{ duration: 0.65, delay: 0.06 + index * 0.035, ease }}
           >
             {word}
           </motion.span>

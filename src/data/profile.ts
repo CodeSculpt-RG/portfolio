@@ -8,7 +8,7 @@ export const profile = {
   email: "work.grahul@gmail.com",
   phone: "+91 9685070128",
   github: "https://github.com/CodeSculpt-RG",
-  linkedin: "https://www.linkedin.com/in/geekster-rahulg",
+  linkedin: "https://www.linkedin.com/in/geekster-rahulg/",
   resumePath: "/G-Rahul-Resume.txt",
   copy: "Building intelligent digital products with precision, performance, and premium user experience.",
 };
@@ -23,7 +23,7 @@ export const contactLinks = [
 
 export const stats = [
   { value: "2+", label: "Years Building" },
-  { value: "10+", label: "Projects" },
-  { value: "40%", label: "Workflow Improvement" },
-  { value: "500+", label: "Users Supported" },
+  { value: "10+", label: "Projects Shipped" },
+  { value: "500+", label: "Commits Pushed" },
+  { value: "40%", label: "Workflow Gains" },
 ];

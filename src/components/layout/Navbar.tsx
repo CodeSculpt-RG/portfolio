@@ -1,53 +1,144 @@
-import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { profile } from "../../data/profile";
-import { useScrollProgress } from "../../hooks/useScrollProgress";
+import { ease } from "../../lib/animations";
 
-const navItems = ["about", "skills", "experience", "projects", "testimonials", "contact"];
+const navItems = [
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
+];
+
+const overlayItems = [
+  { label: "Work", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
+];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const progress = useScrollProgress();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition duration-500 ${scrolled ? "border-b border-white/[0.08] bg-black/72 shadow-2xl backdrop-blur-2xl" : "bg-gradient-to-b from-black/80 to-transparent"}`}>
-      <motion.div className="absolute bottom-0 left-0 h-px bg-gold/70" style={{ scaleX: progress, transformOrigin: "0 50%" }} />
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <a href="#home" className="font-display text-2xl font-semibold tracking-[-0.01em] text-platinum">
-          G Rahul
-        </a>
-        <div className="hidden items-center gap-7 lg:flex">
-          {navItems.map((item) => (
-            <a key={item} href={`#${item}`} className="relative font-ui text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted transition after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-gold/70 after:transition-all after:duration-300 hover:text-platinum hover:after:w-full">
-              {item}
-            </a>
-          ))}
-          <a href={profile.github} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 px-4 py-2 font-ui text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-platinum/80 transition hover:border-gold/50 hover:text-gold-bright">
-            GitHub
+    <>
+      <motion.header
+        className="fixed inset-x-0 top-4 z-50 px-5 sm:top-6"
+        initial={{ opacity: 0, y: -18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease }}
+      >
+        <nav className="mx-auto hidden h-[62px] w-fit max-w-[980px] items-center gap-8 rounded-full border border-slate-400/20 bg-slate-900/70 px-10 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-[16px] lg:flex" aria-label="Main navigation">
+          <a href="#home" className="rounded-full py-2 font-ui text-[19px] font-bold tracking-[-0.02em] text-platinum">
+            G Rahul
           </a>
-        </div>
-        <button className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-platinum lg:hidden" onClick={() => setOpen((value) => !value)} aria-label="Toggle menu">
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </nav>
-      {open ? (
-        <div className="border-t border-white/[0.08] bg-black/95 px-4 pb-6 pt-2 backdrop-blur-xl lg:hidden">
           {navItems.map((item) => (
-            <a key={item} href={`#${item}`} onClick={() => setOpen(false)} className="block border-b border-white/[0.08] py-4 font-ui text-xs uppercase tracking-[0.2em] text-muted">
-              {item}
+            <a
+              key={item.href}
+              href={item.href}
+              className="rounded-full py-2 font-ui text-[15px] font-medium text-muted transition hover:bg-slate-700/45 hover:text-platinum"
+            >
+              {item.label}
             </a>
           ))}
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-400/15 bg-slate-800/45 text-muted transition hover:bg-slate-700/45 hover:text-platinum">
+            <Github size={18} />
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="G Rahul LinkedIn Profile" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-400/15 bg-slate-800/45 text-muted transition hover:bg-slate-700/45 hover:text-platinum">
+            <Linkedin size={18} />
+          </a>
+        </nav>
+
+        <nav className="mx-auto flex min-h-14 w-full max-w-[430px] items-center justify-between gap-4 rounded-[22px] border border-slate-400/20 bg-slate-900/72 px-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-[16px] lg:hidden" aria-label="Mobile navigation">
+          <a href="#home" className="flex items-center gap-2.5">
+            <span className="font-ui text-[18px] font-semibold tracking-[-0.025em] text-platinum">Rahul</span>
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-xl border border-slate-400/20 bg-slate-800/70 px-4 text-[14px] font-semibold text-platinum"
+            aria-label="Open menu"
+          >
+            <Menu size={17} />
+            Menu
+          </button>
+        </nav>
+      </motion.header>
+
+      <AnimatePresence>
+        {open ? <MenuOverlay onClose={() => setOpen(false)} /> : null}
+      </AnimatePresence>
+    </>
+  );
+}
+
+function MenuOverlay({ onClose }: { onClose: () => void }) {
+  return (
+    <motion.div
+      className="fixed inset-0 z-[80] overflow-hidden bg-[#030712] px-5 py-8 backdrop-blur-xl"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease }}
+    >
+      <div className="absolute right-[-8rem] top-[-8rem] h-[34rem] w-[34rem] rounded-full bg-violet-400/25 blur-[90px]" />
+      <div className="absolute left-[-10rem] top-56 h-[26rem] w-[26rem] rounded-full bg-blue-300/15 blur-[80px]" />
+      <div className="absolute inset-0 bg-grid opacity-30" />
+
+      <motion.div
+        className="relative mx-auto flex h-16 max-w-[820px] items-center justify-between gap-4 rounded-full border border-slate-400/20 bg-slate-900/82 px-5 shadow-[0_18px_70px_rgba(0,0,0,0.38)] backdrop-blur-2xl sm:h-[76px] sm:px-7"
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -20, opacity: 0 }}
+        transition={{ duration: 0.5, ease }}
+      >
+        <span className="font-ui text-2xl font-bold tracking-[-0.04em] text-platinum sm:text-4xl">G Rahul</span>
+        <button onClick={onClose} className="flex shrink-0 items-center gap-2 text-base text-platinum/90 sm:gap-3 sm:text-xl" aria-label="Close menu">
+          Close
+          <X className="h-7 w-7 sm:h-[34px] sm:w-[34px]" strokeWidth={1.7} />
+        </button>
+      </motion.div>
+
+      <div className="relative flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center gap-12">
+        <motion.div
+          className="grid gap-5 text-center"
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.055, delayChildren: 0.12 } } }}
+        >
+          {overlayItems.map((item) => (
+            <motion.a
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              className="font-ui text-[clamp(2.6rem,6vw,4.7rem)] font-extrabold leading-none tracking-[-0.055em] text-platinum drop-shadow-[0_0_22px_rgba(147,197,253,0.35)] transition hover:text-gold"
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.58, ease } } }}
+            >
+              {item.label}
+            </motion.a>
+          ))}
+        </motion.div>
+
+        <div className="text-center">
+          <div className="mb-5 flex justify-center gap-7 text-muted">
+            <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="transition hover:text-platinum"><Github size={28} /></a>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="G Rahul LinkedIn Profile" className="transition hover:text-platinum"><Linkedin size={28} /></a>
+            <a href={`mailto:${profile.email}`} aria-label="Email Rahul" className="transition hover:text-platinum"><Mail size={28} /></a>
+          </div>
+          <a href={`mailto:${profile.email}`} className="break-all text-[clamp(1.1rem,6vw,1.5rem)] font-semibold tracking-[-0.03em] text-soft transition hover:text-platinum">{profile.email}</a>
+          <p className="mt-5 text-lg text-muted">Available for projects</p>
         </div>
-      ) : null}
-    </header>
+      </div>
+    </motion.div>
   );
 }

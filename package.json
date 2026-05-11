@@ -13,7 +13,6 @@
     "@hookform/resolvers": "^5.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.10.5",
-    "lenis": "^1.2.3",
     "lucide-react": "^0.507.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -1,4 +1,3 @@
-import Lenis from "lenis";
 import { useEffect, useState } from "react";
 import { CustomCursor } from "./components/common/CustomCursor";
 import { Loader } from "./components/common/Loader";
@@ -22,21 +21,6 @@ export default function App() {
     return () => window.clearTimeout(timeout);
   }, [reduced]);
 
-  useEffect(() => {
-    if (reduced) return;
-    const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
-    let frame = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-    frame = requestAnimationFrame(raf);
-    return () => {
-      cancelAnimationFrame(frame);
-      lenis.destroy();
-    };
-  }, [reduced]);
-
   return (
     <>
       <Loader done={loaded} />
@@ -44,10 +28,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
+        <Projects />
         <Skills />
         <Experience />
-        <Projects />
+        <About />
         <Testimonials />
         <Contact />
       </main>

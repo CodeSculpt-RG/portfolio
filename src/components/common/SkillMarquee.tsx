@@ -1,21 +1,18 @@
-import { motion } from "framer-motion";
+import { memo } from "react";
 import { marqueeSkills } from "../../data/skills";
 
-export function SkillMarquee() {
-  const items = [...marqueeSkills, ...marqueeSkills];
+function SkillMarqueeComponent() {
   return (
-    <div className="overflow-hidden border-y border-white/[0.08] bg-navy-mid/50 py-4">
-      <motion.div
-        className="flex w-max gap-4"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 35, ease: "linear", repeat: Infinity }}
-      >
-        {items.map((skill, index) => (
-          <span key={`${skill}-${index}`} className="rounded-full border border-white/10 px-5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-muted">
+    <div className="marquee overflow-hidden border-y border-white/10 bg-navy-card/60 py-4">
+      <div className="mx-auto flex max-w-[1320px] flex-wrap justify-center gap-3 px-6">
+        {marqueeSkills.map((skill) => (
+          <span key={skill} className="rounded-full border border-white/10 bg-surface/70 px-5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-muted">
             {skill}
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
+
+export const SkillMarquee = memo(SkillMarqueeComponent);

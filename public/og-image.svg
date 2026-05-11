@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#050505"/>
-  <path d="M0 470 C230 390 420 520 650 410 C850 315 965 350 1200 260 L1200 630 L0 630 Z" fill="#0B0B0F"/>
-  <circle cx="930" cy="170" r="210" fill="#BFA46A" opacity=".12"/>
-  <text x="90" y="270" font-family="Georgia,serif" font-size="112" fill="#F4F1EA">G Rahul</text>
-  <text x="96" y="350" font-family="Arial,sans-serif" font-size="34" fill="#BFA46A" letter-spacing="6">FULL-STACK DEVELOPER &amp; AI ENGINEER</text>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#05070D"/>
+      <stop offset="1" stop-color="#0B1020"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" x2="1">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="930" cy="170" r="210" fill="#60A5FA" opacity=".18"/>
+  <circle cx="760" cy="360" r="180" fill="#A78BFA" opacity=".14"/>
+  <text x="90" y="270" font-family="Georgia,serif" font-size="112" fill="#F9FAFB">G Rahul</text>
+  <text x="96" y="350" font-family="Arial,sans-serif" font-size="34" fill="url(#acc)" letter-spacing="6">FULL-STACK DEVELOPER &amp; AI ENGINEER</text>
 </svg>

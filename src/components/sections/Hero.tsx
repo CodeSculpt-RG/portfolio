@@ -1,61 +1,108 @@
-import { Github, Linkedin, Sparkles } from "lucide-react";
+import { Boxes, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { AnimatedText } from "../common/AnimatedText";
 import { Button } from "../common/Button";
 import { MagneticButton } from "../common/MagneticButton";
-import { profile } from "../../data/profile";
-import { stagger, reveal } from "../../lib/animations";
+import { profile, stats } from "../../data/profile";
+import { ease, reveal, stagger } from "../../lib/animations";
+
+const capabilities = ["React Architecture", "AI Workflow", "REST APIs", "Production Build", "Responsive UI"];
 
 export function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-32 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 bg-grid opacity-55" />
+    <section id="home" className="relative overflow-hidden px-5 pb-16 pt-28 sm:px-6 md:pt-32 lg:pt-36">
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
+      <div className="animated-blob pointer-events-none absolute left-[10%] top-28 h-[26rem] w-[26rem] rounded-full bg-blue-300/10 blur-[70px]" />
+      <div className="animated-blob pointer-events-none absolute right-[10%] top-28 h-[30rem] w-[30rem] rounded-full bg-violet-400/20 blur-[80px]" />
+
       <motion.div
-        className="absolute left-[14%] top-[10%] h-[34rem] w-[34rem] rounded-full bg-gold/10 blur-3xl"
-        animate={{ x: [0, 24, 0], y: [0, -18, 0], opacity: [0.55, 0.85, 0.55] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black to-transparent" />
-      <motion.div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]" variants={stagger} initial="hidden" animate="visible">
-        <div className="max-w-4xl text-left">
-          <motion.div variants={reveal} className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.035] px-4 py-2 font-mono text-[0.64rem] uppercase tracking-[0.2em] text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald" /> Available for Projects
+        className="relative z-10 mx-auto grid min-h-[620px] w-full max-w-[1240px] items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]"
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="max-md:text-center">
+          <motion.div variants={reveal} className="glass mb-7 inline-flex items-center gap-2 rounded-full px-3 py-2 font-ui text-xs font-medium text-soft">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald" />
+            Available for projects
           </motion.div>
-          <h1 className="font-display text-[clamp(4.8rem,15vw,12.5rem)] font-semibold leading-[0.78] tracking-[-0.035em] text-platinum">
-            <AnimatedText text={profile.name} />
-          </h1>
-          <motion.p variants={reveal} className="mt-8 max-w-3xl font-display text-[clamp(1.85rem,4.2vw,4.4rem)] font-semibold leading-[0.95] tracking-[-0.025em] text-platinum/92">
-            {profile.heroRole}
+
+          <motion.h1 variants={reveal} className="max-w-[760px] font-ui text-[clamp(36px,10vw,48px)] font-extrabold leading-[1] tracking-[-0.055em] text-platinum sm:text-[clamp(48px,7vw,84px)] sm:leading-[0.95] max-md:mx-auto">
+            Full-Stack Developer &<br />
+            <span className="text-gradient">Gen AI Engineer</span>
+          </motion.h1>
+
+          <motion.p variants={reveal} className="mt-6 max-w-[560px] text-base leading-7 text-soft sm:text-lg sm:leading-8 max-md:mx-auto">
+            Crafting high-performance digital ecosystems where precision code meets advanced machine learning. Specializing in architecture that scales.
           </motion.p>
-          <motion.p variants={reveal} className="mt-7 max-w-xl text-base leading-8 text-muted sm:text-lg">
-            I design and engineer scalable web applications, AI-powered systems, and conversion-focused digital products. {profile.copy}
-          </motion.p>
-          <motion.div variants={reveal} className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <MagneticButton><Button href="#projects">View Work</Button></MagneticButton>
-            <MagneticButton><Button href="#contact" variant="outline">Contact Me</Button></MagneticButton>
-            <MagneticButton><Button href={profile.resumePath} variant="ghost" download>Download Resume</Button></MagneticButton>
+
+          <motion.div variants={reveal} className="mt-8 flex flex-col gap-3 sm:flex-row max-md:items-center max-md:justify-center">
+            <MagneticButton><Button href="#projects">View Selected Work</Button></MagneticButton>
+            <MagneticButton><Button href={profile.resumePath} variant="outline" download>Download Resume</Button></MagneticButton>
           </motion.div>
-          <motion.div variants={reveal} className="mt-8 flex gap-4">
-            <a aria-label="GitHub" href={profile.github} target="_blank" rel="noreferrer" className="rounded-full border border-white/[0.08] p-3 text-muted transition hover:border-gold/50 hover:text-gold-bright"><Github size={19} /></a>
-            <a aria-label="LinkedIn" href={profile.linkedin} target="_blank" rel="noreferrer" className="rounded-full border border-white/[0.08] p-3 text-muted transition hover:border-gold/50 hover:text-gold-bright"><Linkedin size={19} /></a>
-          </motion.div>
-        </div>
-        <motion.div variants={reveal} className="relative hidden min-h-[32rem] lg:block">
-          <div className="absolute inset-0 rounded-lg border border-white/[0.08] bg-navy-card/90 p-8 shadow-2xl">
-            <div className="mb-10 flex items-center justify-between border-b border-white/[0.08] pb-6">
-              <span className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-gold/75">System Snapshot</span>
-              <Sparkles className="text-gold/70" size={18} />
-            </div>
-            {["React architecture", "AI workflows", "REST API design", "Production deployment", "Responsive interface"].map((item, index) => (
-              <div key={item} className="mb-5 flex items-center justify-between border-b border-white/[0.08] pb-5 font-mono text-[0.82rem] text-muted">
-                <span>0{index + 1} / {item}</span>
-                <span className="text-emerald">ready</span>
+
+          <motion.div variants={reveal} className="mt-10 grid grid-cols-2 gap-3 sm:max-w-[560px] sm:grid-cols-4 max-md:mx-auto">
+            {stats.map((stat) => (
+              <div key={stat.label} className="rounded-2xl border border-slate-400/15 bg-slate-900/40 p-4 sm:border-transparent sm:bg-transparent sm:p-0">
+                <p className="font-ui text-3xl font-extrabold tracking-[-0.04em] text-platinum">{stat.value}</p>
+                <p className="mt-1 font-mono text-[0.62rem] uppercase leading-4 tracking-[0.08em] text-muted">{stat.label}</p>
               </div>
             ))}
-            <div className="absolute bottom-8 left-8 right-8 rounded-md border border-white/[0.08] bg-surface p-5 font-mono text-xs leading-6 text-muted">
-              const portfolio = buildPremiumExperience(&quot;React&quot;, &quot;GenAI&quot;, &quot;Motion&quot;);
+          </motion.div>
+        </div>
+
+        <motion.div variants={reveal} className="relative mx-auto w-full max-w-[430px]">
+          <div className="absolute -inset-12 rounded-full bg-gradient-to-br from-gold/25 via-gold-bright/15 to-cyan-300/10 blur-[70px]" />
+          <motion.div
+            className="glass-strong relative overflow-hidden rounded-[28px] p-7"
+            animate={{ y: [-4, 4, -4] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_0%,rgba(147,197,253,0.20),transparent_35%),radial-gradient(circle_at_100%_100%,rgba(167,139,250,0.18),transparent_32%)]" />
+            <div className="relative">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <h2 className="font-ui text-2xl font-bold tracking-[-0.04em] text-platinum">Capability Console</h2>
+                </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-400/20 bg-slate-950/35 text-muted">
+                  <Boxes size={17} />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {capabilities.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    className="rounded-xl border border-slate-400/15 bg-slate-950/30 px-4 py-3"
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.45 + index * 0.05, ease }}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="font-mono text-[0.72rem] text-soft">{item}</span>
+                      <span className="flex gap-1">
+                        {[0, 1, 2, 3].map((dot) => (
+                          <span key={dot} className={`h-1.5 w-1.5 rounded-full ${index === 3 ? "bg-emerald" : dot < 3 ? "bg-gold-bright" : "bg-slate-500/60"}`} />
+                        ))}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-slate-400/15 bg-slate-950/30 p-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-ui text-sm font-semibold text-soft">Build Quality</span>
+                  <span className="rounded-md bg-emerald/20 px-2 py-1 font-mono text-[0.68rem] font-bold text-emerald">96</span>
+                </div>
+                <div className="mt-4 flex items-center gap-2">
+                  <Sparkles size={14} className="text-gold" />
+                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-800">
+                    <div className="h-full w-[96%] rounded-full accent-gradient" />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

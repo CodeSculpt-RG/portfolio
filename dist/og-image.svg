@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#050505"/>
-  <path d="M0 470 C230 390 420 520 650 410 C850 315 965 350 1200 260 L1200 630 L0 630 Z" fill="#0B0B0F"/>
-  <circle cx="930" cy="170" r="210" fill="#BFA46A" opacity=".12"/>
-  <text x="90" y="270" font-family="Georgia,serif" font-size="112" fill="#F4F1EA">G Rahul</text>
-  <text x="96" y="350" font-family="Arial,sans-serif" font-size="34" fill="#BFA46A" letter-spacing="6">FULL-STACK DEVELOPER &amp; AI ENGINEER</text>
-</svg>
